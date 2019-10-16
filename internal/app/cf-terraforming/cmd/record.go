@@ -15,10 +15,10 @@ import (
 
 const recordTemplate = `
 resource "cloudflare_record" "{{.Record.Type}}_{{replace .Record.Name "." "_"}}_{{.Record.ID}}" {
-    domain = "{{.Zone.Name}}"
-{{ if .Zone.Paused}}
+{{ if .Zone.Paused }}
     paused = "true"
 {{end}}
+    zone_id = "{{.Record.ZoneID}}"
     name = "{{.Record.Name}}"
     type = "{{.Record.Type}}"
     ttl = "{{.Record.TTL}}"
